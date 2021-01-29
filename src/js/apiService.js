@@ -15,9 +15,9 @@ export default {
     this.page = 1;
   },
   get query() {
-    return this.query;
+    return this.searchQuery;
   },
-  set query(value) {
-    this.query = value;
+  set query(newQery) {
+    this.searchQuery = newQery;
   },
 };

@@ -1,10 +1,13 @@
 import refs from './refs';
+import updateMarkup from './templating';
+import apiService from './apiService';
 
 refs.showMoreButton.addEventListener('click', event => {
-  event.preventDefault();
-
-  requestImg(inputValue, page).then(hits => {
+  apiService.requestImg().then(hits => {
     updateMarkup(hits);
-    page += 1;
+    window.scrollTo({
+      top: document.documentElement.offsetHeight,
+      behavior: 'smooth',
+    });
   });
 });

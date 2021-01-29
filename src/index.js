@@ -1,4 +1,3 @@
-import materialDesignIcons from 'material-design-icons';
 import './style.scss';
 import './js/refs';
 import './js/templating';

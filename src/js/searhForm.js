@@ -7,20 +7,22 @@ refs.searchFormRef.addEventListener('submit', event => {
   const form = event.currentTarget;
   apiService.query = form.elements.query.value;
   refs.galleryRef.innerHTML = '';
-
   apiService.resetPage();
+
+  if (apiService.query === '') {
+    refs.galleryRef.innerHTML = '';
+    refs.showMoreButton.classList.add('is-hidden');
+    return;
+  }
 
   apiService.requestImg().then(hits => {
     updateMarkup(hits);
+    refs.showMoreButton.classList.remove('is-hidden');
+    window.scrollTo({
+      top: document.documentElement.offsetHeight,
+      behavior: 'smooth',
+    });
   });
 
   form.reset();
-});
-
-refs.showMoreButton.addEventListener('click', event => {
-  event.preventDefault();
-
-  apiService.requestImg().then(hits => {
-    updateMarkup(hits);
-  });
 });
